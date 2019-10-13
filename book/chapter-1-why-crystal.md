@@ -41,7 +41,7 @@ channel = Channel(String).new
 end
 ```
 
-Ruby におおまかに置き換えると、以下のようになります。
+ざっくり Ruby に書き直すと、次のようになります。
 
 ```ruby
 10.times.map do
