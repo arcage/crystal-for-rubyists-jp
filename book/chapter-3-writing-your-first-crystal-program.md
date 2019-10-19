@@ -1,27 +1,27 @@
-# Chapter 3: Writing Your First Crystal Program
+# 第3章: Crystal のプログラムを書いてみよう
 
-## Writing Your First Crystal Program  <a id="writing-your-first-crystal-program"></a>
+## Crystal のプログラムを書いてみよう <a id="writing-your-first-crystal-program"></a>
 
-Okay! Let’s get down to it: in order to call yourself an “X Programmer,” you must write “Hello, world” in X. So let’s do it. Open up a text file: I’ll use `vim` because I’m that kind of guy, but use whatever you want. Crystal programs end in `.cr`:
+それでは早速 “Hello, world” を書いてみましょう。`vim` でも何でもお好きなエディタでファイルを開きましょう。拡張子は `.cr` です。
 
 ```text
 $ vim hello.cr
 ```
 
-Put this in it:
+下記のように記述します。
 
 ```ruby
 puts "Hello World!"
 ```
 
-And run it with `crystal` command:
+`Crystal` を実行してみましょう。
 
 ```text
 $ crystal hello.cr
 Hello World!
 ```
 
-It should run and print the output without error. If you get one, double check that you have the double quotation marks. Errors look like this:
+"Hello, World!" が出力されると思います。文字列がダブルクオートであることに注意してください。シングルクォートの場合は、以下のようなエラーになります。
 
 ```text
 $ crystal hello.cr
@@ -30,27 +30,26 @@ Syntax error in ./hello.cr:1: unterminated char literal, use double quotes for s
 puts 'Hello World!'
 ```
 
-By the way `crystal` command is great for quickly running your code but it’s slow. Each time it compiles and runs your program Let’s see how much does it takes to run that program.
+`crystal` コマンドでの実行はすぐに実行できる一方、実行速度は遅くなっています。実行のたびにコンパイルが走っているためです。処理時間を計測してみましょう。
 
 ```text
 $ time crystal hello.cr
 crystal hello.cr  0.30s user 0.20s system 154% cpu 0.326 total
 ```
 
-0.326 seconds for a `Hello World`? Now that’s slow.
+0.326 秒かかっています。`Hello World` にしては遅いです。
 
-Instead of compiling and running again you can compile it to native code with the `build`command.
+代わりに、`build` コマンドでコンパイルしてネイティブコードを生成してみましょう。
 
 ```text
 $ crystal build hello.cr
 ```
 
-And to run your program, do the Usual UNIX Thing:
+通常の実行ファイルのように実行してみましょう。
 
 ```text
 $ time ./hello
 ./hello  0.00s user 0.00s system 87% cpu 0.006 total
 ```
 
-You should see “Hello, world.” print to the screen 50x faster :\) Congrats!
-
+“Hello, world.” の出力が50倍も速くなりました。
