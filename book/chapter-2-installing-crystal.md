@@ -1,28 +1,25 @@
-# Chapter 2: Installing Crystal
+# 第2章: Crystal のインストール
 
-### Binary installers <a id="binary-installers"></a>
+### バイナリインストーラ <a id="binary-installers"></a>
 
-The Crystal project provides official binary installers. You can get both releases and nightlies. Binary installers are the fastest and easiest way to get going with Crystal. Because Crystal is written in Crystal, compiling the Crystal compiler actually entails compiling it three times! This means it’s quite slow. But a binary install should be snappy!
+Crystal プロジェクトは公式のバイナリインストーラを配布しています。リリース版、Nightly版双方を入手可能です。バイナリインストーラが最も早く手軽にCrystalを使う方法です。Crystal は Crystal そのもので記述されているため、Crystal コンパイラをコンパイルするには、3回コンパイルする必要があるのです。これはかなり面倒ですが、バイナリインストーラなら手軽です。
 
-Crystal has a [lovely installation page](http://crystal-lang.org/docs/installation/index.html), so I recommend you just go check that out and download the proper version.
+Crystal には [インストールガイド](http://crystal-lang.org/docs/installation/index.html) があります。一読して、適切なバージョンを入手してください。
 
-Note that this book has been tested with Crystal 0.28.0, and so if you use the latest nightly, something may have changed.
+本書は Crystal 0.28.0 をもとに記述しています。Nightly版を使う際には、違いがあるかもしれません。
 
-### From Source <a id="from-source"></a>
+### ソースからインストール <a id="from-source"></a>
 
-You will probably build the nightly version if you build from source, so be ready for some bugs in the code samples. This book was written for 0.28.0.
+もしソースからビルドしたい場合は、Nightly版を使うとよいでしょう。コードサンプルのバグが治っています。
 
-The [Crystal README](http://crystal-lang.org/docs/installation/from_source_repository.html) has great instructions for building form source. Just got follow their instructions!
+ソースからビルドする際は [Crystal README](http://crystal-lang.org/docs/installation/from_source_repository.html) の手順に従ってビルドしてください。
 
-#### Future Proofing <a id="future-proofing"></a>
+#### 将来の変更について <a id="future-proofing"></a>
 
-The version this book is written for is 0.28.0. While the language itself is pretty stable, things like the standard library and some major subsystems are being revised. I’ll try to update it with every new release.
+本書は 0.28.0 をもとに記述しています。言語自体は安定していますが、標準ライブラリや主要なサブシステムは修正途中です。新しいバージョンがリリースされた際は本書を更新していきたいと考えています。
 
-If you run
+Crystal を引数なしで実行すると、ヘルプが出力されます。参考にしてください。
 
 ```text
 $ crystal
 ```
-
-and it spits out a bunch of help information, you’re good to go with Crystal.
-
