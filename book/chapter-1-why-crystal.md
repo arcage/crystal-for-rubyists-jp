@@ -1,35 +1,35 @@
-# Chapter 1: Why Crystal?
+# 第1章: Crystal を使いましょう
 
-You already write software in Ruby. It pays your bills. You enjoy it. Why should you care about Crystal?
+もしあなたが Ruby を使ってソフトウェア開発を行っているなら、 Crystal も使ってみてはいかがでしょうか。
 
-Let’s think about Ruby for a minute: what’s its biggest weakness? For me, it’s these things:
+Ruby のことを振り返ると、以下のような弱点があります。
 
-* Concurrency
-* Speed
-* Documentation
+* 並列処理
+* 実行速度
+* (英語の) ドキュメント不足
 
-What’s awesome about Ruby?
+一方、Ruby の長所は以下のような点です。
 
-* Blocks
-* Vaguely functional
-* Syntax is pretty easy
-* Focus on developer happiness
-* Get up and running quickly
-* Dynamically typed
+* ブロック
+* なんとなく書けて、動く
+* 簡単な文法
+* 開発しやすさに重きを置いている
+* すぐ書いてすぐ実行できる
+* 動的型付け言語であること
 
-So we could learn a lot from a language that’s easy as Ruby, handles concurrency well, and is fast. We don’t want to sacrifice anonymous functions, pretty syntax, or not making `AbstractFactoryFactoryImpls` just to get work done.
+Ruby のように簡単に学習できて、だけれども並列処理をしっかりできて、無名関数や複雑な文法や`AbstractFactoryFactoryImpls`なんてクラスを作らなくて済む言語。
 
-I think that language is _Crystal_.
+それが _Crystal_ です。
 
-Now: Crystal is not perfect. It is getting better. But the point is to _learn_. and using a language that’s very familiar, yet very different, can teach us a lot.
+今はまだ Crystal も完璧ではありません。しかし、「学びやすさ」という点では、より親しみのある言語を使う方が、他の言語より学びが多いと考えています。
 
-Here’s “Hello World” in Crystal:
+Crystal での “Hello World” を実行してみましょう。
 
 ```ruby
 puts "Hello, world!"
 ```
 
-Here’s a concurrent “Hello World” in Crystal:
+次は、並列実行版の “Hello World” です。
 
 ```ruby
 channel = Channel(String).new
@@ -41,7 +41,7 @@ channel = Channel(String).new
 end
 ```
 
-Here’s a rough port to Ruby:
+Ruby におおまかに置き換えると、以下のようになります。
 
 ```ruby
 10.times.map do
@@ -51,16 +51,17 @@ Here’s a rough port to Ruby:
 end.each(&:join)
 ```
 
-That’s it. Note the stuff that’s _similar_ to Ruby:
+下記の点で Ruby とよく似ていることが分かるかと思います。
 
-* Pretty same syntax.
-* Variables, while statically typed, have inference, so we don’t need to declare types
+* ほぼ同じ文法
+* 変数は静的型付け言語ですが、型推論があるため、型を宣言する必要がないこと
 
-Here’s some stuff that’s _different_:
+違いは、以下の点です。
 
-* Being compiled and statically typed the compiler will yell at us if we mess up.
+* コンパイル言語であること
+* 静的型付け言語であること
 
-Oh, and:
+実行速度を見てみると…
 
 ```text
 $ time ./hello
@@ -70,7 +71,6 @@ $ time ruby hello.rb
 ruby hello.rb  0.03s user 0.01s system 94% cpu 0.038 total
 ```
 
-Five times faster. Yay irrelevant microbenchmarks!
+5倍も速い（笑）微小な差ではありますが。
 
-Anyway, I hope you get my point: There’s lots of things about Crystal that make it syntactically vaguely similar enough to Ruby that you can feel at home. And its strengths are some of Ruby’s greatest weaknesses. That’s why I think you can learn a lot from playing with Crystal, even if you don’t do it as your day job.
-
+いずれにせよ強調したい点としては、Crystal は Ruby とほぼ同じ文法で扱いやすいという点です。一方で、強みは Ruby の弱点を補っているところです。Crystal を通じて得られるものが多いと言えます。
