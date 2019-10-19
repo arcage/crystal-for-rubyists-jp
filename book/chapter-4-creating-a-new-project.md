@@ -1,10 +1,10 @@
-# Chapter 4: Creating a new project
+# 第4章: プロジェクトを作成しよう
 
-Up until now we’ve used the `crystal` command to only run our code.
+これまでは、 `crystal` コマンドをコードを実行するためだけに使ってきました。
 
-Actually `crystal` command is pretty useful and does lot more than that. \(check `crystal --help`for more\)
+`crystal` コマンドにはそれだけではない、多くの機能が備わっています。\(`crystal --help` を確認してください\)
 
-For example we can use it to create a new Crystal project.
+例えば、新しいCrystalプロジェクトを作成することができます。
 
 ```text
 $ crystal init app sample
@@ -20,32 +20,32 @@ $ crystal init app sample
 Initialized empty Git repository in /Users/serdar/crystal_for_rubyists/code/04/sample/.git/
 ```
 
-Awesome. `crystal` helped us create a new project. Let’s see what it did for us.
+`crystal` は新しいプロジェクトを作成してくれます。何をやっているのかを見てみましょう。
 
-* Created a new folder named sample
-* Created a LICENSE
-* Created `.travis.yml` to easily integrate Travis for continous integration.
-* Created `shard.yml` for dependency management.
-* Initialized an empty Git repository
-* Created a README for our project
-* Created `src` and `spec` folders to put our code and tests\(ssh..we’ll talk about it soon\) in it.
+* 「sample」という名前のフォルダを作成
+* LICENSE ファイルを作成
+* `.travis.yml` を作成し、TravisCIとの連携を容易にできます
+* 依存関係管理のための `shard.yml` を作成
+* 空の Git リポジトリで初期化
+* README ファイルを作成
+* ソースコードを置くための `src` フォルダ、 テストコードを置くための `spec` フォルダを作成 \(`spec`については後述します\)
 
-Let’s run it.
+実行してみましょう。
 
 ```text
 $ cd sample
 $ crystal src/sample.cr
 ```
 
-Nothing! Yay :\)
+何もおきません（笑）
 
-Now that we create our first project. Let’s use some external libraries.
+それでは最初のプロジェクトを作っていきましょう。いくつか外部ライブラリを使用します。
 
-## Using Shards for dependency management  <a id="using-shards-for-dependency-management"></a>
+## Shards を用いた依存関係の管理 <a id="using-shards-for-dependency-management"></a>
 
-To manage dependencies of a project we use `shards`. `shards` is like `bundler` and `shard.yml` is like `Gemfile`.
+プロジェクトの依存関係を管理するのに `shards` を使います。`shards` は `bundler` に、`shard.yml` は `Gemfile` に相当します。
 
-Let’s open up `shard.yml`.
+`shard.yml` の内容を見てみましょう。
 
 ```text
 name: sample
@@ -57,18 +57,18 @@ authors:
 license: MIT
 ```
 
-This is a default `shard.yml` and it contains the minimal necessary information about our project. Those are
+デフォルトの `shard.yml` は上記のように、プロジェクトについての最低限の情報が記載してあります。
 
-* `name` specifies the name of the project
-* `version` specifies the version of the project. Crystal itself uses [semver](http://semver.org/) for version management so it’s a good convention for you to follow.
-* `authors` section specifies the authors of the project. By default this is taken from your global `git` configuration.
-* `license` specifies the type of your project license. By default this is `MIT`.
+* `name` はプロジェクト名を示します
+* `version` はプロジェクトのバージョンを示しています。 Crystal 自体はバージョン管理に [semver](http://semver.org/) を使います。のちのち役立つでしょう。
+* `authors` セクションはプロジェクトの著者を示します。デフォルトでは `git` の設定から名前を取得します。
+* `license` はプロジェクトのライセンスを示します。デフォルトでは `MIT` ライセンスになります。
 
-Okay. That’s great but what can we do with this `shard.yml`? Well we can use this file to add external libraries\(we call it dependency\) and manage them without even worrying about any folders / paths e.g.. Sweet isn’t it?
+`shard.yml` の役割について確認しました。このファイルに外部ライブラリを追加することができます。また、フォルダやパスなどを考慮することなく、依存関係を管理することができます。
 
-Now that we know the true power of `shards` let’s add [Kemal](https://github.com/sdogruyol/kemal) to our `shard.yml` and build a simple web application :\)
+`shards` の真の力をお見せしましょう。`shard.yml` に [Kemal](https://github.com/sdogruyol/kemal) ライブラリを追加します。簡単なウェブアプリをビルドしましょう。
 
-Open up `shard.yml`. First we need to add `Kemal` as a dependency to our project. We do this by including
+`shard.yml` を開き、 `Kemal` を依存関係に追加します。次のように記載します。
 
 ```text
 dependencies:
@@ -77,7 +77,7 @@ dependencies:
     version: 0.14.1
 ```
 
-That’s great! Now we added `Kemal` to our project. First, we need to install it.
+これで、`Kemal` ライブラリがプロジェクトに追加されました。これをインストールします。
 
 ```text
 $ shards install
@@ -89,7 +89,7 @@ Installing radix (0.3.0)
 Installing kilt (0.3.3)
 ```
 
-Okay now we are ready to use `Kemal` in our project. Open up `src/sample.cr`
+これで `Kemal` を使う準備ができました。`src/sample.cr` を開きましょう。
 
 ```ruby
 require "./sample/*"
@@ -106,16 +106,15 @@ end
 Kemal.run
 ```
 
-Look how we used `require` to access `Kemal` in our program.
+どうやって `Kemal` を `require` して、使うかが分かります。
 
-Let’s run.
+実行してみましょう。
 
 ```text
 $ crystal src/sample.cr
 [development] Kemal is ready to lead at http://0.0.0.0:3000
 ```
 
-Go to `localhost:3000` and see it in action!
+ブラウザで `localhost:3000` を開き、結果を確認してみてください。
 
-Now you know how to add dependencies and use others’ `shard`s :\)
-
+これで、依存関係を追加して他の `shard` を使う方法がわかりました。
