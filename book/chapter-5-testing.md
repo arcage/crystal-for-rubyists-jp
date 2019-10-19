@@ -1,10 +1,10 @@
-# Chapter 5: Testing
+# 第5章: テスト
 
-Rubyists love testing, so before we go any farther, let’s talk about testing. In Crystal, there is a testing framework built in, and it’s named `spec`. It’s pretty similar to `RSpec`.
+Rubyist はテスト大好きなので、まずはテストについて触れましょう。Crystal ではテストフレームワークが組み込まれています。名前は `spec` と言って、`RSpec` とよく似ています。
 
-Let’s continue with the project we created in Chapter 04.
+第4章で作ったプロジェクトで続けます。
 
-As you remember `crystal` created this project structure for us.
+`crystal` で以下のようなプロジェクトの構造を作ったことを思い出してください。
 
 ```text
 $ cd sample && tree
@@ -20,11 +20,11 @@ $ cd sample && tree
   -- sample.cr
 ```
 
-Did you see that `spec` folder? Yes, as you guess Crystal created this folder and the first spec for us. In Crystal a file is tested with corresponding `_spec` file. Since we named our project as `sample`it created a file named `sample.cr` and the corresponding spec with `spec/sample_spec.cr`.
+`spec` フォルダがあるのが分かります。お察しのとおり、Crystal が最初の spec を作ってくれています。Crystal ではソースファイルは対応する `_spec` ファイルでテストします。プロジェクト名を `sample` とつけたので、ソースファイルは `sample.cr` 、対応する spec ファイルは `spec/sample_spec.cr` となります。
 
-By the way, in this context `spec` and `unit test` means the same so we can use them interchangeably.
+本書では、`spec` と `unit test` を同じ意味で使っています。
 
-Without further ado lets open up `spec/sample_spec.cr`
+`spec/sample_spec.cr` を開いてみましょう。
 
 ```ruby
 require "./spec_helper"
@@ -38,17 +38,21 @@ describe Sample do
 end
 ```
 
-Now this file is pretty interesting. There a three important keywords, `describe`, `it` and `should`.
+3つの重要なキーワード、`describe`, `it` と `should` が記載されています。
 
-Those keywords are only used in `spec`s with the following purposes.
+これらのキーワードは `spec` ファイル内で次の役割で使われています。
 
-* `describe` lets you group related specs.
-* `it` is used for defining a spec with the given title in between “”.
-* `should` is used for making assumptions about the spec.
+* `describe` は spec が関係するグループを示します
+* `it` は spec を定義するのに使います。spec のタイトルをダブルクオートで囲います
+* `should` は spec の assumption を作るのに使います
 
-As you can see this file has a group `describe`d as `Sample` and `it` has one spec with the title of `works` which makes the assumption that false `should` equal true.
+見てのとおり、specファイルには以下が含まれています。
 
-You might be asking ‘How do we run these tests?’. Well `crystal` command to the rescue.
+* `Sample` と名づけられたグループ
+* タイトルに `works` と付けられているひとつの spec `it`
+* spec の想定は、false が true と一致すべき \(`should`\) であることを示している
+
+これらのテストを実行するためには、やはり `crystal` コマンドを使います。
 
 ```text
 $ crystal spec
@@ -72,7 +76,7 @@ Failed examples:
 crystal spec ./spec/sample_spec.cr:6 # Sample works
 ```
 
-Yay! We got a failing\(red\) test. Reading the output we can easily find which spec failed. Here it’s the spec within the group of `Sample` titled `works` a.k.a `Sample works`. Let’s make it pass\(green\).
+テストが失敗 \(red\) しました。出力を読むと、どの spec が失敗したかがすぐに分かります。 `Sample` グループの `works` というタイトルの spec です。`Sample works` と記載されています。このテストを通して \(green\) みましょう。
 
 ```ruby
 require "./spec_helper"
@@ -86,7 +90,7 @@ describe Sample do
 end
 ```
 
-Rerun the specs.
+再度、実行してみましょう。
 
 ```text
 $ crystal spec
@@ -97,5 +101,4 @@ Finished in 0.63 milliseconds
 1 examples, 0 failures, 0 errors, 0 pending
 ```
 
-Green! That’s all you need to know to get started. Next up: FizzBuzz.
-
+成功しました。これが覚えるべきすべてです。次の章では、FizzBuzz を作ってみましょう。
