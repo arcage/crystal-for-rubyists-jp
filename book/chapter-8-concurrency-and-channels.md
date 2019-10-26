@@ -1,8 +1,8 @@
-# Chapter 8: Concurrency and Channels
+# 第8章: 並列実行とチャンネル
 
-Did you remember Chapter 1? We did a concurrent Hello World!
+第1章を思い出してみましょう。並列実行のHello, World!を行いました。
 
-Here’s a quick reminder.
+以下のような感じです。
 
 ```ruby
 channel = Channel(String).new
@@ -14,25 +14,25 @@ channel = Channel(String).new
 end
 ```
 
-In Crystal we use the keyword `spawn` to make something work in the background without blocking the main execution.
+Crystalでは、`spawn` キーワードを使って、メイン関数の実行をブロックすることなくバックグラウンドで何かを実行できます。
 
-To achieve this `spawn` creates a lightweight thread called `Fiber`. `Fiber`s are very cheap to create and you can easily create tens of thousands of `Fiber`s on a single core.
+これを実現するために、`spawn`では `Fiber` という軽量スレッドを生成しています。`Fiber` はとても低コストに生成することができ、シングルコア上に数万のスレッドを容易に作ることができます。
 
-Okay, that’s really cool! We can use `spawn` to make stuff work in the background but how do we get something back from a `Fiber`.
+`spawn` を使うことで、`Fiber` が裏で何かやっているのを気にすることなく、バックグラウンドで何かを実行できます。
 
-Now that’s where `Channel`s come to play.
+次は、`チャンネル` の出番です。
 
-## Channel  <a id="channel"></a>
+## チャンネル <a id="channel"></a>
 
-As the name stands a `Channel` is a channel between a sender and the receiver. Therefore a `Channel` lets each other communicate with `send` and `receive` methods.
+`Channel` の名前が示すとおり、チャンネルには送信側と受信側があります。なので、`Channel` はお互いと `send` と `receive` 関数を使ってやりとりをします。
 
-Let’s take a line by line look at our previous example.
+先ほどの例を一行ずつ見ていきましょう。
 
 ```ruby
 channel = Channel(String).new
 ```
 
-We create a `Channel` with `Channel(String).new`. Note that we are creating a `Channel` which will `send` and `receive` messages with type of `String`.
+チャンネルを `Channel(String).new` で作っています。`send` ならびに `receive` メソッドでやり取りする際、`String` 型を使って行うように作ったことを思い出してください。
 
 ```ruby
 10.times do
@@ -43,9 +43,9 @@ We create a `Channel` with `Channel(String).new`. Note that we are creating a `C
 end
 ```
 
-Leaving the loop aside, we are sending a message to our channel inside `spawn`. You might ask ‘Why are we sending message in the background?’ Well, `send` is a blocking operation and if we do that in the main program we gonna block the program forever.
+ループする際、`spawn` の中でチャンネルにメッセージを送っています。「なぜメッセージをバックグラウンドで送る必要があるのか？」とお考えかもしれません。`send` は処理をブロックするので、メインプログラム内でこれを実行してしまうと、処理をブロックし続けてしまうのです。
 
-Consider this:
+これを踏まえて、以下のように実行してみます。
 
 ```ruby
 channel = Channel(String).new
@@ -53,7 +53,7 @@ channel.send "Hello?" # This blocks the program execution
 puts channel.receive
 ```
 
-What’s the output of this program? Actually this program won’t ever finish because it gets blocked by `channel.send "Hello?"`. Now that we know why we use `spawn` to send a message let’s continue.
+何か出力はありましたでしょうか。実際には、このプログラムは処理が終わりません。`channel.send "Hello?"` によって処理がブロックされてしまうためです。処理を続けるために、`spawn` を使う必要があるということが分かりました。
 
 ```ruby
 spawn {
@@ -62,5 +62,4 @@ spawn {
 puts channel.receive
 ```
 
-We just sent a message through our channel in the background with `spawn`. Then we receive it back with `channel.receive`. In this example the message is `Hello?` so this program prints `Hello?`and then finishes.
-
+`spawn` を使ってバックグラウンドでチャンネルにメッセージを送信しました。これを、`channel.receive` を用いて受け取ります。この例ではメッセージは `Hello?` なので、これを表示してからプログラムが終了します。
