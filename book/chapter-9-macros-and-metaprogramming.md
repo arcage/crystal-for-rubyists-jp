@@ -1,15 +1,15 @@
-# Chapter 9: Macros and Metaprogramming
+# 第9章: マクロとメタプログラミング
 
-We love Ruby because of its’ dynamic nature and metaprogramming! Unlike Ruby, Crystal is a compiled language. That’s why there are some key differences.
+我々は、動的な性質とメタプログラミングがあるので、Ruby を愛しているといってもいいでしょう。Ruby と異なり、Crystal はコンパイル型言語です。これにより、いくつかの重要な違いがあります。
 
-* There’s no `eval`.
-* There’s no `send`.
+* `eval` がないこと
+* `send` がないこと
 
-In Crystal we use `Macro`s to achieve this kind of behaviour and metaprogramming. You can think of `Macro`s as ‘Code that writes/modifies code’.
+Crystal では `マクロ` をつかって、eval や send のようなふるまいやメタプログラミングを実現します。`マクロ` は「コードを書きかえる・更新するコードである」と考えてください。
 
-P.S: `Macro`s are expanded into code at compile-time.
+マクロはコンパイル時に、コードに展開されます。
 
-Check this.
+この様子を見てみましょう。
 
 ```ruby
 macro define_method(name, content)
@@ -28,7 +28,7 @@ define_method foo, 1
 foo # => 1
 ```
 
-In the example we created a macro named `define_method` and we just called that macro like a normal method. That macro expanded into
+この例では、`define_method` という名前のマクロを作成し、これを普通の関数のように呼びました。このマクロは以下のように展開されます。
 
 ```ruby
   def foo
@@ -36,9 +36,6 @@ In the example we created a macro named `define_method` and we just called that 
   end
 ```
 
-Pretty cool! We got `eval` behaviour at compile-time.
+これで、コンパイル時に `eval` のようにふるまうものを手に入れました。
 
-Macros are really powerful but there’s one rule that you can’t break.
-
-_**A macro should expand into a valid Crystal program**_
-
+マクロはとてもパワフルですが、「**マクロは適切なCrystalプログラムに展開される**」という厳しいルールが存在します。
