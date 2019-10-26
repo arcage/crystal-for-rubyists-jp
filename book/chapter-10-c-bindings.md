@@ -1,12 +1,12 @@
-# Chapter 10: C Bindings
+# 第10章: C バインディング
 
-There are lots of useful C libraries out there. It’s important that we make use of them instead of rewriting every single of them.
+世の中には、C言語で作られた便利なライブラリが数多く存在します。なにかを一から作り直すより、ありものを使うことが重要です。
 
-In Crystal, It’s super easy to use existing C libraries with bindings. Even Crystal itself uses C libraries.
+Crystal では、バインディングをもちいてとても簡単に既存の C ライブラリを使うことができます。
 
-For example Crystal uses `libpcre` for it’s `Regex` implementation.
+たとえば Clystal では `Regex` クラスの実装として `libpcre` を使っています。
 
-Like I said it’s super easy to write bindings for C. Crystal itself links to `libpcre` like this
+C のバインディングは先ほども触れたとおり、とても簡単に書けます。
 
 ```ruby
 @[Link("pcre")]
@@ -15,9 +15,9 @@ lib LibPCRE
 end
 ```
 
-With just 3 lines of code you we’re linked to `libpcre` :\) We use `lib` keyword to group functions and types that belong to a library. And it’s a good convetion to start with `Lib` for your C library declarations.
+たった3行で `libpcre` をリンクできました。`lib` キーワードを使って、そのライブラリに所属する関数や型をひとまとめにします。ライブラリの宣言のプレフィックスを `Lib` で始めるとよいでしょう。
 
-Next we bind to C functions with the `fun` keyword.
+次は、C の関数を `fun` キーワードでバインドしてみましょう。
 
 ```ruby
 @[Link("pcre")]
@@ -27,9 +27,8 @@ lib LibPCRE
 end
 ```
 
-Here we binded to `libpcre`s compile function with the matching types. Now we can easily access this function in our Crystal code.
+上記では `libpcre` の関数を適切な型にバインドしています。これで、簡単に Crystal のコードからこの関数にアクセスできます。
 
 ```ruby
 LibPCRE.compile(..)
 ```
-
