@@ -2,7 +2,7 @@
 
 ### バイナリインストーラ <a id="binary-installers"></a>
 
-Crystal プロジェクトは公式のバイナリインストーラを配布しています。リリース版、Nightly版双方を入手可能です。バイナリインストーラが最も早く手軽にCrystalを使う方法です。Crystal は Crystal そのもので記述されているため、Crystal コンパイラをコンパイルするには、3回コンパイルする必要があるのです。これはかなり面倒ですが、バイナリインストーラなら手軽です。
+Crystal プロジェクトは公式のバイナリインストーラを配布しています。リリース版、Nightly版双方を入手可能です。バイナリインストーラがもっとも早く手軽にCrystalを使う方法です。Crystal は Crystal そのもので記述されているため、Crystal コンパイラをコンパイルするには、3回コンパイルする必要があるのです。これはかなり面倒ですが、バイナリインストーラなら手軽です。
 
 Crystal には [インストールガイド](http://crystal-lang.org/docs/installation/index.html) があります。一読して、適切なバージョンを入手してください。
 
@@ -12,7 +12,7 @@ Crystal には [インストールガイド](http://crystal-lang.org/docs/instal
 
 もしソースからビルドしたい場合は、Nightly版を使うとよいでしょう。コードサンプルのバグが治っています。
 
-ソースからビルドする際は [Crystal README](http://crystal-lang.org/docs/installation/from_source_repository.html) の手順に従ってビルドしてください。
+ソースからビルドする際は [Crystal README](http://crystal-lang.org/docs/installation/from_source_repository.html) の手順にしたがってビルドしてください。
 
 #### 将来の変更について <a id="future-proofing"></a>
 
