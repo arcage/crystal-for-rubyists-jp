@@ -2,9 +2,9 @@
 
 これまでは、 `crystal` コマンドをコードを実行するためだけに使ってきました。
 
-`crystal` コマンドにはそれだけではない、多くの機能が備わっています。\(`crystal --help` を確認してください\)
+`crystal` コマンドにはそれだけではない、多くの便利な機能が備わっています。（`crystal --help` を確認してください）
 
-たとえば、新しい Crystal プロジェクトを作成できます。
+たとえば、新しい Crystal プロジェクトを作成することもできます。
 
 ```text
 $ crystal init app sample
@@ -20,17 +20,19 @@ $ crystal init app sample
 Initialized empty Git repository in /Users/serdar/crystal_for_rubyists/code/04/sample/.git/
 ```
 
-`crystal` は新しいプロジェクトを作成してくれます。何をやっているのかを見てみましょう。
+素晴らしい。
+
+`crystal` コマンドは新しいプロジェクトの生成を手助けしてくれます。実際に何をやっているのかを見てみましょう。
 
 * 「sample」という名前のフォルダを作成
 * LICENSE ファイルを作成
-* `.travis.yml` を作成し、TravisCIとの連携を容易にできます
+* Travisを使って容易にCIを実現するための `.travis.yml` を作成
 * 依存関係管理のための `shard.yml` を作成
-* 空の Git リポジトリで初期化
+* 空の Git リポジトリを初期化
 * README ファイルを作成
-* ソースコードを置くための `src` フォルダ、 テストコードを置くための `spec` フォルダを作成 \(`spec`については後述します\)
+* ソースコードを置くための `src` フォルダ、 テストコードを置くための `spec` フォルダを作成（`spec`については後述します）
 
-実行してみましょう。
+では、実行してみましょう。
 
 ```text
 $ cd sample
@@ -39,13 +41,13 @@ $ crystal src/sample.cr
 
 何もおきません（笑）
 
-それでは最初のプロジェクトを作っていきましょう。いくつか外部ライブラリを使用します。
+さて、最初のプロジェクトができました。次に、いくつか外部ライブラリを使用てみましょう。
 
-## Shards を用いた依存関係の管理 <a id="using-shards-for-dependency-management"></a>
+## Shards をによる依存関係の管理 <a id="using-shards-for-dependency-management"></a>
 
-プロジェクトの依存関係を管理するのに `shards` を使います。`shards` は `bundler` に、`shard.yml` は `Gemfile` に相当します。
+プロジェクトの依存関係を管理するのに `shards` コマンドを使います。おおよそ、`shards` は `bundler` に、`shard.yml` は `Gemfile` に相当します。
 
-`shard.yml` の内容を見てみましょう。
+`shard.yml` を開いてみましょう。
 
 ```text
 name: sample
@@ -57,18 +59,18 @@ authors:
 license: MIT
 ```
 
-デフォルトの `shard.yml` は上記のように、プロジェクトについての最低限の情報が記載してあります。
+デフォルトの `shard.yml` には、以下のようなプロジェクトについて最低限の情報が記載されています。
 
 * `name` はプロジェクト名を示します
 * `version` はプロジェクトのバージョンを示しています。 Crystal 自体はバージョン管理に [semver](http://semver.org/) を使います。のちのち役立つでしょう。
 * `authors` セクションはプロジェクトの著者を示します。デフォルトでは `git` の設定から名前を取得します。
 * `license` はプロジェクトのライセンスを示します。デフォルトでは `MIT` ライセンスになります。
 
-`shard.yml` の役割について確認しました。このファイルに外部ライブラリを追加することが可能です。また、フォルダやパスなどを考慮することなく、依存関係を管理できます。
+これはこれでよいとして、`shard.yml` を使って他に何ができるのでしょうか？ 例えば、このファイルに外部ライブラリ（依存ライブラリとも呼びます）についての記述を追加して、ファイルやパスなどを気にせずそれらを管理することができます。すごくない？
 
-`shards` の真の力をお見せしましょう。`shard.yml` に [Kemal](https://github.com/sdogruyol/kemal) ライブラリを追加します。簡単なウェブアプリをビルドしましょう。
+さて、あなたは今 `shards` の真の力を知りました。早速、我々の `shard.yml` に [Kemal](https://github.com/sdogruyol/kemal) を追加して、簡単なWebアプリケーションを作ってみましょう。
 
-`shard.yml` を開き、 `Kemal` を依存関係に追加します。次のように記載します。
+`shard.yml` を開きましょう。まず必要なのは `Kemal` をプロジェクトの依存ライブラリとして追加することです。そのためには、`shard.yml` に以下の内容を加えてください。
 
 ```text
 dependencies:
@@ -77,7 +79,7 @@ dependencies:
     version: 0.14.1
 ```
 
-これで、`Kemal` ライブラリがプロジェクトに追加されました。これをインストールします。
+すばらしい。これでプロジェクトに `Kemal` が追加されました。次は `Kemal` のインストールです。
 
 ```text
 $ shards install
@@ -89,7 +91,7 @@ Installing radix (0.3.0)
 Installing kilt (0.3.3)
 ```
 
-これで `Kemal` を使う準備ができました。`src/sample.cr` を開きましょう。
+これで `Kemal` を使う準備ができました。では、`src/sample.cr` を開きましょう。
 
 ```ruby
 require "./sample/*"
@@ -106,15 +108,15 @@ end
 Kemal.run
 ```
 
-どうやって `Kemal` を `require` して、使うかが分かります。
+どのように `Kemal` を `require` して、使っているか見てみてください。
 
-実行してみましょう。
+では、実行してみましょう。
 
 ```text
 $ crystal src/sample.cr
 [development] Kemal is ready to lead at http://0.0.0.0:3000
 ```
 
-ブラウザで `localhost:3000` を開き、結果を確認してみてください。
+Webブラウザで `localhost:3000` を開き、動作を確認してみてください。
 
-これで、依存関係を追加して他の `shard` を使う方法がわかりました。
+これで、依存ライブラリを追加して、だれかが作った `shard` を使う方法がわかりましたね。
